@@ -1,0 +1,50 @@
+{% extends 'tienda/base.html' %}
+{% block title %}Lista de productos{% endblock %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="row" style="margin-top: 15%;">
+    <div class="d-flex justify-content-center align-items-center text-center">
+        <div class="table-hover table-responsive mt-5">
+            <table class="table table-striped table-secondary">
+                <tr>
+                    <th>Cod. Producto</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Descripcion</th>
+                    <th>Foto</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                
+                {% for x in productos %}
+                    <tr>
+                        <td> {{x.cod_producto}} </td>
+                        <td> {{x.nombre}} </td>
+                        <td> {{x.precio}} </td>
+                        <td> {{x.cantidad}} </td>
+                        <td style="max-width: 300px; white-space: normal;"> {{x.descripcion}} </td>
+                        <td> <img src="{{x.img_producto.url}}" alt="imagen_rota" style="height: 25%; width: 25%;"> </td>
+                        <td><a href="{% url 'productos_eliminar' pk=x.cod_producto %}">Eliminar</a></td>
+                        <td><a href="{% url 'productos_modificar' pk=x.cod_producto %}">Modificar</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+<div style="text-align: center;">
+    <a href="{% url 'productos_agregar' %}" class="btn btn-primary boton">Agregar</a>
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#idMensajes").delay(2000).fadeOut("slow");
+    });
+</script>
+
+{% endblock %}

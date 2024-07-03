@@ -1,0 +1,67 @@
+{% extends 'tienda/base.html' %}
+{% block title %}JOBoutique-Home{% endblock %}
+{% load static %}
+{% block contenido %}
+
+    <h1 class="mensaje" style="font-size: 550%;">
+        ¡Lo más destacado!
+    </h1>
+
+    <!--Carrusel-->
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin-left: 5%; margin-right: 5%;">
+        <div class="carousel-inner carousel-background">
+            <div class="carousel-item active">
+                <div class="text-center">
+                    <a href="">
+                        <img src="{% static 'tienda/Img/pulpo_rosado.jpg' %}" alt="" class="d-block w-100">
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="text-center">
+                    <a href="">
+                        <img src="{% static 'tienda/Img/pulpo.jpg' %}" alt="" class="d-block w-100">
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="text-center">
+                    <a href="">
+                        <img src="{% static 'tienda/Img/scrunchie_turquesa.jpeg' %}" alt="" class="d-block w-100">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+    
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <!--Galería productos-->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            {% for p in productos %}
+            <div class="col-lg-4">
+                {% if p.img_producto %}
+                <a class="d-flex justify-content-center" href="">
+                    <img src="{{p.img_producto.url}}" alt="" height="200px" width="200px">
+                </a>
+                {% endif %}
+                <a class="d-flex justify-content-center" href="">
+                    {{p.nombre}}
+                    <br>
+                    Precio: ${{p.precio}}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,135 @@
+.dropdown-menu a{
+    color: inherit;
+    text-decoration:none;
+}
+
+body{
+    background-image: linear-gradient(167deg,#7c5b8d,#f8c2fe,#dcc7fe);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.boton{
+    background-color: #4f1d6e !important;
+    font-size: 120% !important;
+    font-weight: bold !important;
+}
+
+.boton-hover{
+    background-image: linear-gradient(to right, #4f1d6e, #824ea2) !important;
+    font-size: 120% !important;
+    font-weight: bold !important;
+    transition: all 20s ease !important;
+}
+
+.carousel-background{
+    background-color: #4f1d6e;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 10%;
+    margin-bottom: 5%;
+}
+
+.carousel-item img{
+    max-width: 40%;
+    height: 300px;
+    margin: auto;
+    border-radius: 5%;
+}
+
+.carousel-inner img{
+    height: 400px;
+    object-fit: cover;
+}
+
+.mensaje{
+    margin-top: 15%;
+    text-align: center;
+    font-family: 'Allura';
+    color: white;
+}
+
+#mensajeDonacion{
+    font-size: 350%;
+}
+
+.navbar{
+    background-image: linear-gradient(to bottom right, #4f1d6e, #9a6daf);
+}
+
+.nav-item{
+    padding-left: 40px !important;
+    padding-right: 20px !important;
+}
+
+.navbar-brand{
+    width: 100px;
+}
+
+.nav-link{
+    color: white !important;
+    font-size: 30px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.order-background{
+    background-color: #9a6daf;
+    border-radius: 5%;
+}
+
+#cuerpoFooter{
+    color: white;
+}
+
+#h3Footer{
+    color: white;
+}
+
+/*Sección de la pagina de carrito de compras*/
+
+.cart-container {
+    background-color: #d1b1d8;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+.cart-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e7ccea;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-photo, .product-description, .product-price {
+    flex: 1;
+    text-align: center;
+}
+
+.total-cost {
+    margin-top: 20px;
+}
+
+.order-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #5a395b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background-color: #4b2c4c;
+}
