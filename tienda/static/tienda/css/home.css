@@ -14,6 +14,8 @@ body{
     background-color: #4f1d6e !important;
     font-size: 120% !important;
     font-weight: bold !important;
+    outline: none !important;
+    border: none !important;
 }
 
 .boton-hover{
@@ -41,6 +43,19 @@ body{
 .carousel-inner img{
     height: 400px;
     object-fit: cover;
+}
+
+.carta-items{
+    margin-top: 4%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.linkTelasProductos{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 120%;
 }
 
 .mensaje{
@@ -84,6 +99,7 @@ body{
 
 #h3Footer{
     color: white;
+    text-decoration: none !important;
 }
 
 /*Sección de la pagina de carrito de compras*/
@@ -132,4 +148,98 @@ body{
 
 .order-button:hover {
     background-color: #4b2c4c;
+}
+
+/*Seccion registro y login*/
+
+.login-box {
+	background-image: linear-gradient(167deg,#7c5b8d,#f8c2fe,#dcc7fe);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-color: #4f1d6e; /* Morado */
+	border-radius: 10px; /* Bordes redondeados */
+	padding: 20px; /* Espaciado interno */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.login-input-div > div{
+    position: relative;
+	height: 45px;
+}
+
+.login-input-div > div > h5{
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #4f1d6e;
+	font-size: 18px;
+	transition: .3s;
+}
+
+.login-input-div:before{
+	right: 50%;
+}
+
+.login-input-div:after{
+	left: 50%;
+}
+
+.login-input-div.focus:before, .input-div.focus:after{
+	width: 50%;
+}
+
+.login-input-div.focus > div > h5{
+	top: -5px;
+	font-size: 15px;
+}
+
+.login-input-div.focus > .i > i{
+	color: #824ea2;
+}
+
+.login-input-div > div > input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+	font-family: 'poppins', sans-serif;
+}
+
+.login-input-div.pass{
+	margin-bottom: 4px;
+}
+
+.i{
+	color: #4f1d6e;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.i i{
+	transition: .3s;
+}
+
+/*Sección Sobre mi*/
+
+.sobremi{
+    padding-left: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: white;
+    text-justify: auto;
+    font-size: 150%;
+    background-image: linear-gradient(167deg,#7c5b8d,#f8c2fe,#7c5b8d);
+    border: 2px solid #4b2c4c;
+    max-width: 80%;
+    border-radius: 5%;
 }

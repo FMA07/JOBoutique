@@ -1,14 +1,4 @@
 $(document).ready(function () {
-    //Esta sección es para llamar la barra de navegación en distintas páginas
-    $(function(){
-        $('#navbar').load('static/tienda/navbar.html')
-    })
-
-    //Esta es para llamar el footer
-    $(function(){
-        $('#barraFooter').load('barrafooter.html')
-    })
-
     //Esta sección es para cambiar apariencia de botones en hover
     $('#botonEscogerCiudad').mouseover(function () { 
         $('#botonEscogerCiudad').addClass('boton-hover')
@@ -46,6 +36,17 @@ $(document).ready(function () {
         $('#botonPedir').removeClass('boton-hover')
     });
 
+    $('#botonDonar').mouseover(function () { 
+        $('#botonDonar').addClass('boton-hover')
+
+        $('#botonDonar').removeClass('boton')
+    });
+
+    $('#botonDonar').mouseleave(function () { 
+        $('#botonDonar').addClass('boton')
+
+        $('#botonDonar').removeClass('boton-hover')
+    });
     
     //------------------------------------------------------------
 

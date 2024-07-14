@@ -60,7 +60,7 @@ ROOT_URLCONF = 'JOBoutique.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +72,7 @@ TEMPLATES = [
         },
     },
 ]
+LOGIN_REDIRECT_URL = "joboutique"
 
 WSGI_APPLICATION = 'JOBoutique.wsgi.application'
 

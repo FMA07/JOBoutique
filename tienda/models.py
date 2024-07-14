@@ -33,16 +33,18 @@ class Pedido(models.Model):
     email           = models.ForeignKey('usuario', on_delete=models.CASCADE)
     cod_tela        = models.ForeignKey('tela', to_field ='cod_tela',  on_delete=models.CASCADE)
     cod_producto    = models.ForeignKey('producto', to_field='cod_producto', on_delete=models.CASCADE)
+    descripcion     = models.CharField(max_length=300, null=True)
 
     def __str__(self):
         return f'Email asociado: {self.email} | Codigo_tela: {self.cod_tela} | Codigo_producto: {self.cod_producto}'
     
 class Tela(models.Model):
-    cod_tela        = models.AutoField(primary_key=True, unique=True)
-    img_tela        = models.ImageField(upload_to = 'producto', null = True)
+    cod_tela        = models.CharField(max_length=5, primary_key=True, unique=True)
+    img_tela        = models.ImageField(upload_to = 'telas', null = True)
     nomb_tela       = models.CharField(max_length=200, null=True)
+    existencia      = models.BooleanField(default=True)
     def __str__(self):
-        return f'Cod_tela: {self.cod_tela} | Nombre_tela: {self.nomb_tela}'
+        return f'Cod_tela: {self.cod_tela} | Nombre_tela: {self.nomb_tela} | Existencia: {self.existencia}'
 
 class Carrito(models.Model):
     id_carrito      = models.AutoField(primary_key=True, unique=True)
@@ -53,8 +55,7 @@ class Carrito(models.Model):
     
 class Donacion(models.Model):
     id_donacion     = models.AutoField(primary_key=True, unique=True)
-    img_donacion    = models.ImageField(upload_to="productos", null=True)
-    descripcion     = models.CharField(max_length=200)
+    img_donacion    = models.ImageField(upload_to="donaciones", null=True)
     email           = models.ForeignKey('usuario', on_delete=models.CASCADE)
 
     def __str__(self):

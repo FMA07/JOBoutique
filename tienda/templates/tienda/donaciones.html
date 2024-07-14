@@ -1,0 +1,42 @@
+{% extends 'tienda/base.html' %}
+{% block title %}Donaciones{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block contenido %}
+
+<div class="container-fluid" style="margin-top: 15%; margin-bottom: 10%;">
+    <div class="order-background">
+        <div class="row">
+            <div class="col-lg-5 d-flex"> <!--lado izquierdo del container-->
+                <img src="{% static 'tienda/Img/img_donacion.jpeg' %}" alt="" style="height: 100%; width: 100%; border-radius: 5%;">
+            </div>
+            <div class="col-lg-7 d-flex flex-column align-items-center justify-content-center" style="margin-top: -5%;"><!--lado derecho del container-->
+                <h1 class="mensaje" id="mensajeDonacion">
+                    Reciclar es la clave
+                    <br>
+                    ¡Cambiemos el futuro del planeta!
+                </h1>
+                <div class="row">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.imagen}}
+                        <div style="text-align: center; margin-top: 5%;">
+                            <input type="submit" value="Enviar donación" class="btn btn-primary boton" id="botonDonar">
+                        </div>
+                    </form>
+                </div>
+                <h1 class="mensaje" style="font-size: 170%; margin-top: 2%;">
+                    Como agradecimiento por tu donación, te podrás llevar este bonito llavero de regalo
+                </h1>
+                <img src="{% static 'tienda/Img/regalo' %}" alt="" style="height: 30%; width: 30%; border-radius: 5%; border-color: #4f1d6e;">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'tienda/js/funcionalidad.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'tienda/base.html' %}
+{% block title %}Carrito{% endblock %}
+{% load static %}
+{% block contenido %}
+
+<main style="margin-top: 15%; text-align: center;">
+    <h1 class="mensaje">Carrito de compras</h1>
+    <div class="cart-container">
+        <label>
+            <input type="checkbox" id="select-all">Seleccionar todos los productos
+        </label>
+        <div class="cart-item">
+            <input type="checkbox" class="product-checkbox">
+            <div class="product-photo">FOTO 1</div>
+            <div class="product-description">xxxxxxxxxxxxxx</div>
+            <div class="product-price">$0.000</div>
+        </div>
+        <div class="cart-item">
+            <input type="checkbox" class="product-checkbox">
+            <div class="product-photo">FOTO 2</div>
+            <div class="product-description">xxxxxxxxxxxxxx</div>
+            <div class="product-price">$0.000</div>
+        </div>
+        <div class="cart-item">
+            <input type="checkbox" class="product-checkbox">
+            <div class="product-photo">FOTO 3</div>
+            <div class="product-description">xxxxxxxxxxxxxx</div>
+            <div class="product-price">$0.000</div>
+        </div>
+        <div class="cart-item">
+            <input type="checkbox" class="product-checkbox">
+            <div class="product-photo">FOTO 4</div>
+            <div class="product-description">xxxxxxxxxxxxxx</div>
+            <div class="product-price">$0.000</div>
+        </div>
+        <div class="total-cost">
+            <div>Costo envío: -------</div>
+            <div>Valor total: $00.000</div>
+        </div>
+        <button class="order-button">Pedir</button>
+    </div>
+    </div>
+</main>
+ 
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'tienda/js/carrito.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,168 @@
+{% extends 'tienda/base.html' %}
+{% block title %}Registro/Login{% endblock %}
+{% load static %}
+{% block contenido %}
+
+<div class="container-fluid" style="margin-top: 15%;">
+    <div class="row">
+        <div class="col-lg-6" style="justify-content: center; align-items: center;">
+            <div class="login-box">
+                <div style="text-align: center;">
+                    <img src="{% static 'tienda/Img/logoredondo.png' %}" alt="" style="height: 25%; width: 25%;">
+                </div>                    
+                <!--Contenedor nombre-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div one">
+                        <div class="i">
+                            
+                        </div>
+                        <div class="div">
+                            <h5>Nombre</h5>
+                            <input type="text" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Contenedor apellido-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        </div>
+                        <div class="div">
+                            <h5>Apellido</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo Dirección-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        </div>
+                        <div class="div">
+                            <h5>Dirección</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo región-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        </div>
+                        <div class="div">
+                            <h5>Region</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo comuna-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        </div>
+                        <div class="div">
+                            <h5>Comuna</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo telefono-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        
+                        </div>
+                        <div class="div">
+                            <h5>Telefono</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo correo-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        
+                        </div>
+                        <div class="div">
+                            <h5>Correo</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo contraseña-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        
+                        </div>
+                        <div class="div">
+                            <h5>Contraseña</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo repetir contraseña-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                    
+                        </div>
+                        <div class="div">
+                            <h5>Repetir contraseña</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    <input type="submit" id="botonRegistrar" class="btn btn-primary boton" value="Registrarse">
+                </div>
+            </div>
+        </div>
+        <!--Seccion login......................................................................-->
+        
+        <div class="col-lg-6" style="justify-content: center; align-items: center; height: 50%;">
+            <div class="login-box">
+                <div style="text-align: center;">
+                    <img src="{% static 'tienda/Img/logoredondo.png' %}" alt="" style="height: 25%; width: 25%;">
+                </div>
+                <!--Campo Nombre de usuario-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        
+                        </div>
+                        <div class="div">
+                            <h5>Nombre de usuario</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <!--Campo contraseña-->
+                <div class="login-input-container" style="border-bottom: 2px solid #4f1d6e;">
+                    <div class="login-input-div pass">
+                        <div class="i"> 
+                        
+                        </div>
+                        <div class="div">
+                            <h5>Contraseña</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    <input type="submit" id="botonIngresar" class="btn btn-primary boton" value="Ingresar">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'tienda/js/funcionalidad.js' %}"></script>
+<script src="{% static 'tienda/js/main.js' %}"></script>
+{% endblock %}

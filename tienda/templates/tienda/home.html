@@ -3,7 +3,7 @@
 {% load static %}
 {% block contenido %}
 
-    <h1 class="mensaje" style="font-size: 550%;">
+    <h1 class="mensaje" style="font-size: 550%; margin-top: 10%;">
         ¡Lo más destacado!
     </h1>
 
@@ -50,18 +50,24 @@
             {% for p in productos %}
             <div class="col-lg-4">
                 {% if p.img_producto %}
-                <a class="d-flex justify-content-center" href="">
-                    <img src="{{p.img_producto.url}}" alt="" height="200px" width="200px">
-                </a>
+                <div class="card p-4 carta-items" style="background-color: #dcc7fe;">
+                    <a class="d-flex justify-content-center" href="">
+                        <img src="{{p.img_producto.url}}" alt="" height="200px" width="200px">
+                    </a>
+                    <a class="d-flex justify-content-center linkTelasProductos" href="">
+                        {{p.nombre}}
+                        <br>
+                        Precio: ${{p.precio}}
+                    </a>
+                </div>
                 {% endif %}
-                <a class="d-flex justify-content-center" href="">
-                    {{p.nombre}}
-                    <br>
-                    Precio: ${{p.precio}}
-                </a>
             </div>
             {% endfor %}
         </div>
     </div>
 
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'tienda/js/funcionalidad.js' %}"></script>
 {% endblock %}

@@ -1,15 +1,41 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto
-from .forms import Productoforms
+from .models import Producto, Tela, Donacion
+from .forms import Productoforms, Donacionforms
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
+#REDIRECCION PAGINAS EXTERNAS
+def redirigir_whatsapp(request):
+    return HttpResponseRedirect('https://wa.me/qr/HUUEM6JLE72RD1')
 
+#VISTAS DE PÁGINAS-----------------------------------------------------------
 
 def home(request):
     productos = Producto.objects.all()
     context = {"productos": productos}
     return render(request, 'tienda/home.html', context)
+
+def pedidos(request):
+    telas = Tela.objects.all()
+    context = {"telas": telas}
+    return render(request, 'tienda/pedidos.html', context)
+
+def donaciones(request):
+    if request.method == 'POST':
+        formulario = Donacionforms(request.POST, request.FILES)
+    return render(request, 'tienda/donaciones.html', data)
+
+def carrito(request):
+    return render(request, 'tienda/cart.html')
+
+def registro(request):
+    return render(request, 'tienda/registroLogin.html')
+
+def sobremi(request):
+    return render(request, 'tienda/sobreMi.html')
+
+#SECCIÓN CRUD----------------------------------------------------------------
 
 def lista_productos(request):
     productos = Producto.objects.all()
@@ -44,29 +70,6 @@ def productos_modificar(request, pk):
             return redirect(to='lista_productos')
     return render(request, 'tienda/productos/productos_modificar.html', data)
         
-def productos_actualizar(request):
 
-    if request.method == "POST":
-        codigo = request.POST.get("codigo")
-        nombre=request.POST["nombre"]
-        precio=request.POST["precio"]
-        cantidad=request.POST["cantidad"]
-        descripcion=request.POST["descripcion"]
-        imagen=request.POST["imagen"]
+#SECCION AGREGAR USUARIOS----------------------------------------------------------------
 
-        producto = get_object_or_404(Producto, cod_producto=codigo)
-        producto.nombre=nombre
-        producto.precio=precio
-        producto.cantidad=cantidad
-        producto.descripcion=descripcion
-        producto.img_producto=imagen
-        producto.save()
-
-        context={'mensaje':'Datos actualizados'}
-        return render(request, 'tienda/productos/productos_modificar.html', context)
-
-    else:
-        productos = Producto.objects.all()
-        context = {'productos': productos}
-        return render(request, 'tienda/productos/lista_productos.html', context)
-        
