@@ -1,0 +1,71 @@
+{% extends 'tienda/base.html' %}
+{% block title %}Registrarse{% endblock %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% block contenido %}
+
+<div class="container-fluid" style="margin-top: 15%;">
+    <div class="login-box" style="justify-content: center; align-items: center; margin-left: 20%; margin-right: 20%;">
+        <div style="text-align: center;">
+            <img src="{% static 'tienda/Img/logoredondo.png' %}" alt="" style="height: 25%; width: 25%;">
+        </div> 
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form | crispy}}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'tienda/js/funcionalidad.js' %}"></script>
+<script src="{% static 'tienda/js/main.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var cargarComunasUrl = "{% url 'cargar_comunas' %}";
+        var cargarCiudadesUrl = "{% url 'cargar_ciudades' %}";
+
+        $("#id_region").change(function(){
+            var regionId = $(this).val();
+            $.ajax({
+                url: cargarComunasUrl,
+                data: {
+                    'region': regionId
+                },
+                success: function(data){
+                    console.log(data);
+                    $("#id_comuna").html('<option value="">Seleccione Comuna</option>');
+                    $.each(data, function(key, value){
+                        $("#id_comuna").append('<option value="'+ value.id +'">'+ value.comuna +'</option>');
+                    });
+                },
+                error: function(xhr, status, error){
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+        $("#id_comuna").change(function(){
+            var comunaId = $(this).val();
+            $.ajax({
+                url: cargarCiudadesUrl,
+                data: {
+                    'comuna': comunaId
+                },
+                success: function(data){
+                    console.log(data);
+                    $("#id_ciudad").html('<option value="">Seleccione Ciudad</option>');
+                    $.each(data, function(key, value){
+                        $("#id_ciudad").append('<option value="'+ value.id +'">'+ value.ciudad +'</option>');
+                    });
+                },
+                error: function(xhr, status, error){
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+  </script>
+{% endblock %}

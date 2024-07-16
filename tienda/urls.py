@@ -12,7 +12,9 @@ urlpatterns = [
     path('pedidos', views.pedidos, name='pedidos'),
     path('donaciones', views.donaciones, name='donaciones'),
     path('carrito', views.carrito, name='carrito'),
-    path('registro_login', views.registro, name='registro_login'),
+    path('registro', views.registro, name='registro'),
+    path('ajax/cargar_comunas/', views.cargar_comunas, name='cargar_comunas'),
+    path('ajax/cargar_ciudades/', views.cargar_ciudades, name='cargar_ciudades'),
     path('sobremi', views.sobremi, name='sobremi'),
     path('whatsapp/', redirigir_whatsapp, name="redirigir_whatsapp"),
     #SECCIÓN CRUD-----------------------------------------------------

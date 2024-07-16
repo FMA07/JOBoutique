@@ -243,3 +243,10 @@ body{
     max-width: 80%;
     border-radius: 5%;
 }
+
+/*Seccion Forms*/
+
+.prueba{
+    margin-bottom: 50%;
+    font-size: 400px;
+}

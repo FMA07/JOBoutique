@@ -50,7 +50,7 @@ $(document).ready(function () {
     
     //------------------------------------------------------------
 
-    // Esta sección es para aceptar una imagen y validarla
+    // Esta sección es para aceptar una imagen y validarla NO SE USA
     $('#attachImageButton').click(function () {
         $('#fileInput').click();
     });

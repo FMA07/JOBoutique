@@ -5,6 +5,7 @@
 {% load crispy_forms_filters %}
 {% block contenido %}
 
+
 <div class="container-fluid" style="margin-top: 15%; margin-bottom: 10%;">
     <div class="order-background">
         <div class="row">
@@ -18,11 +19,11 @@
                     ¡Cambiemos el futuro del planeta!
                 </h1>
                 <div class="row">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="donaciones" method="POST" enctype="multipart/form-data" >
                         {% csrf_token %}
-                        {{ form.imagen}}
+                        {{form.img_donacion | as_crispy_field}}
                         <div style="text-align: center; margin-top: 5%;">
-                            <input type="submit" value="Enviar donación" class="btn btn-primary boton" id="botonDonar">
+                            <input type="submit" value="Donar" class="btn btn-primary boton" id="botonDonar">
                         </div>
                     </form>
                 </div>

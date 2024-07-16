@@ -1,18 +1,38 @@
 from django.db import models
 
 # Create your models here.
+class Region(models.Model):
+    region          = models.CharField(max_length=30,blank=False, null=False, unique=True)
+    
+    def __str__(self):
+        return str(self.region)
+    
+class Comuna(models.Model):
+    comuna          = models.CharField(max_length=30,blank=False, null=False, unique=True)
+    region          = models.ForeignKey(Region, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.comuna)
+        
+class Ciudad(models.Model):
+    ciudad          = models.CharField(max_length=30,blank=False, null=False, unique=True)
+    comuna          = models.ForeignKey(Comuna, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.ciudad)
+    
 class Usuario(models.Model):
     email           = models.EmailField(primary_key=True, null=False, max_length=50, unique=True)
     nombre          = models.CharField(max_length=30)
     appaterno       = models.CharField(max_length=30)
     apmaterno       = models.CharField(max_length=30)
-    region          = models.CharField(max_length=20)
-    comuna          = models.CharField(max_length=20)
+    region          = models.ForeignKey(Region, on_delete=models.CASCADE)
+    comuna          = models.ForeignKey(Comuna, on_delete=models.CASCADE)
+    ciudad          = models.ForeignKey(Ciudad, on_delete=models.CASCADE, default='')
     direccion       = models.CharField(max_length=20)
     celular         = models.CharField(max_length=12)
     telefono_opcion = models.CharField(max_length=12, null=True, blank=True)
-    cod_postal      = models.IntegerField()
-    contrasenna     = models.CharField(max_length=20, null=False)
+    contraseña     = models.CharField(max_length=20, null=False)
 
     def __str__(self):
         return f'Nombre: {self.nombre} {self.appaterno} | Email: {self.email} | Comuna: {self.comuna}'

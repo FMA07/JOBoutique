@@ -42,9 +42,18 @@
                         <a href="{% url 'carrito' %}">
                             <img src="{% static 'tienda/Img/carrito_compras.png' %}" alt="" height="100px" width="100px" style="padding-right: 20px !important;">
                         </a>
-                        <a href="{% url 'registro_login' %}">
+                        <a href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{% static 'tienda/Img/login.png' %}" height="100px" width="100px" alt="">    
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="">Iniciar Sesión</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
