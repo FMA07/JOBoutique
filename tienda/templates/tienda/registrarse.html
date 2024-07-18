@@ -12,7 +12,33 @@
         </div> 
         <form action="" method="POST">
             {% csrf_token %}
-            {{form | crispy}}
+            <h4 style="font-weight: bold;">Email*</h4>
+            {{form.email | as_crispy_field}}
+            <h4 style="font-weight: bold;">Nombre*</h4>
+            {{form.nombre | as_crispy_field}}
+            <h4 style="font-weight: bold;">Apellido Paterno*</h4>
+            {{form.appaterno | as_crispy_field}}
+            <h4 style="font-weight: bold;">Apellido Materno*</h4>
+            {{form.apmaterno | as_crispy_field}}
+            <h4 style="font-weight: bold;">Region*</h4>
+            {{form.region | as_crispy_field}}
+            <h4 style="font-weight: bold;">Comuna*</h4>
+            {{form.comuna | as_crispy_field}}
+            <h4 style="font-weight: bold;">Ciudad*</h4>
+            {{form.ciudad | as_crispy_field}}
+            <h4 style="font-weight: bold;">Dirección*</h4>
+            {{form.direccion | as_crispy_field}}
+            <h4 style="font-weight: bold;">Celular*</h4>
+            {{form.celular | as_crispy_field}}
+            <h4 style="font-weight: bold;">Teléfono</h4>
+            {{form.telefono_opcion | as_crispy_field}}
+            <h4 style="font-weight: bold;">Contraseña*</h4>
+            {{form.password | as_crispy_field}}
+            <h4 style="font-weight: bold;">Repetir Contraseña*</h4>
+            {{form.password2 | as_crispy_field}}
+            <div class="d-flex justify-content-evenly">
+                <button class="btn btn-primary boton" type="submit">Registrarse</button>
+            </div>
         </form>
     </div>
 </div>

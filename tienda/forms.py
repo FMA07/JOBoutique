@@ -3,8 +3,8 @@ from django import forms
 from django.core.files.base import File
 from django.db.models.base import Model
 from django.forms.utils import ErrorList
-from .models import Producto, Donacion, Usuario, Region, Comuna, Ciudad
-from django.contrib.auth.forms import UserCreationForm
+from .models import Producto, Donacion, Usuario, Region, Comuna, Ciudad, Tela, Pedido
+from django.contrib.auth import authenticate
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
 
@@ -23,6 +23,7 @@ class Donacionforms(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(Donacionforms, self).__init__(*args, **kwargs)
         self.fields['img_donacion'].label = False
+        self.fields['email'].label = False
         self.fields['email'].required = True
         self.helper = FormHelper()
         self.helper.form_class = 'prueba'
@@ -38,6 +39,9 @@ class Registroforms(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(Registroforms, self).__init__(*args, **kwargs)
+        fields_to_hide = ['email', 'nombre', 'appaterno', 'apmaterno', 'region', 'comuna', 'ciudad', 'direccion', 'celular', 'telefono_opcion', 'password', 'password2']
+        for x in fields_to_hide:
+            self.fields[x].label = False
         self.fields['comuna'].queryset = Comuna.objects.none()
         self.fields['ciudad'].queryset = Ciudad.objects.none()
 
@@ -85,3 +89,44 @@ class Registroforms(forms.ModelForm):
             self.add_error('password2', "Las contraseñas no coinciden")
 
         return cleaned_data
+    
+#Formulario telas
+class telaforms(forms.ModelForm):
+    class Meta:
+        model = Tela
+        fields ='__all__'
+
+#Formulario Pedido
+class pedidoForms(forms.ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ['email', 'cod_producto', 'cod_tela', 'descripcion']
+
+        #descripcion_area = forms.CharField(widget=forms.Textarea())
+
+    def __init__(self, *args, **kwargs):
+        super(pedidoForms, self).__init__(*args, **kwargs)
+        self.fields['email'].label= False
+        self.fields['cod_tela'].label = False
+        self.fields['cod_producto'].label = False
+        self.fields['descripcion'].label = False
+        self.helper = FormHelper()
+        #self.helper.layout = Layout(
+        #    'cod_producto',
+        #    'cod_tela'
+        #    'descripcion_area'
+        #)
+
+#Formulario log in
+
+class LoginForm(forms.Form):
+    usuario = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label="Correo Electrónico")
+    contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Contraseña")
+
+    def clean(self):
+        usuario = self.cleaned_data.get("usuario")
+        contraseña = self.cleaned_data.get("contraseña")
+        usuario = authenticate(usuario=usuario, contraseña=contraseña)
+        if not usuario:
+            raise forms.ValidationError('Correo Electrónico o contraseña incorrectos')
+        return self.cleaned_data

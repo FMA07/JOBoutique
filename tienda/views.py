@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto, Tela, Donacion, Ciudad, Comuna
-from .forms import Productoforms, Donacionforms, Registroforms
-from django.http import HttpResponseRedirect, JsonResponse
+from .models import Producto, Tela, Donacion, Ciudad, Comuna, Pedido
+from .forms import Productoforms, Donacionforms, Registroforms, telaforms, pedidoForms, LoginForm
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
 #REDIRECCION PAGINAS EXTERNAS
 def redirigir_whatsapp(request):
-    return HttpResponseRedirect('https://wa.me/qr/HUUEM6JLE72RD1')
+    return HttpResponseRedirect('https://wa.me/56973317862')
+def redirigir_insta(request):
+    return HttpResponseRedirect('https://www.instagram.com/creaciones_jo_boutique?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==')
 
 #VISTAS DE PÁGINAS-----------------------------------------------------------
 
@@ -19,6 +22,16 @@ def home(request):
 def pedidos(request):
     telas = Tela.objects.all()
     context = {"telas": telas}
+    if request.method == 'POST':
+        formulario = pedidoForms(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            context["mensaje"] = "Pedido realizado"
+            return redirect(to='pedidos')
+        else:
+            context['form'] = formulario
+    else:
+        context['form'] = pedidoForms()
     return render(request, 'tienda/pedidos.html', context)
 
 def donaciones(request):
@@ -39,19 +52,9 @@ def carrito(request):
 def sobremi(request):
     return render(request, 'tienda/sobreMi.html')
 
-def registro(request):
-    data = {'form': Registroforms()}
-    if request.method == 'POST':
-        formulario = Registroforms(data=request.POST, files=request.FILES)
-        if formulario.is_valid():
-            usuario = formulario.save(commit = False)
-            usuario.contraseña = formulario.cleaned_data['password']
-            usuario.save()
-            data["mensaje"] = "Registrado con éxito"
-            return redirect(to='home')
-        else:
-            data['form'] = formulario
-    return render(request, 'tienda/registrarse.html', data)
+def gestor_admin(request):
+    return render(request, 'tienda/gestor_admin.html')    
+
 #SECCIÓN FUNCIONALIDAD SELECCION CIUDADES---------------------------------------------
 
 def cargar_comunas(request):
@@ -65,7 +68,41 @@ def cargar_ciudades(request):
     return JsonResponse(list(ciudades.values('id','ciudad')), safe=False)
 
 #SECCIÓN CRUD----------------------------------------------------------------
+#telas-------------------------------------------------------------------
+def lista_telas(request):
+    telas = Tela.objects.all()
+    context = {"telas": telas}
+    return render(request,'tienda/telas/lista_telas.html',context)
 
+def agregar_telas(request):
+    data = {'form': telaforms()}
+    if request.method == 'POST':
+        formulario = telaforms(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Tela agregado"
+            return redirect(to='lista_telas')
+        else:
+            data['form'] = formulario
+    return render(request, 'tienda/telas/agregar_telas.html', data)
+    
+def modificar_telas(request, pk):
+    tela = get_object_or_404(Tela, cod_tela=pk)
+    data = {'form': telaforms(instance=tela)}
+    if request.method == 'POST':
+        formulario = telaforms(data=request.POST, instance= tela, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Tela actualizada"
+            return redirect(to='lista_telas')
+    return render(request, 'tienda/telas/modificar_telas.html', data)
+
+def eliminar_telas(request, pk):
+    tela = get_object_or_404(Tela, cod_tela=pk)
+    tela.delete()
+    return redirect(to='lista_telas')
+
+#Productos-------------------------------------------------------------------
 def lista_productos(request):
     productos = Producto.objects.all()
     context = {"productos": productos}
@@ -99,6 +136,55 @@ def productos_modificar(request, pk):
             return redirect(to='lista_productos')
     return render(request, 'tienda/productos/productos_modificar.html', data)
         
-
+#Pedidos--------------------------------------------------------------------------------------    
+def lista_pedidos(request):
+    pedidos = Pedido.objects.all()
+    context = {"pedidos": pedidos}
+    return render(request, 'tienda/pedidos/lista_pedidos.html', context)
+def eliminar_pedidos(request, pk):
+    pedido = get_object_or_404(Pedido, cod_pedido=pk)
+    pedido.delete()
+    return redirect(to='lista_pedidos')
+#Donaciones
+def lista_donaciones(request):
+    donaciones = Donacion.objects.all()
+    context = {"donaciones": donaciones}
+    return render(request, 'tienda/donaciones/lista_donaciones.html', context)
+def eliminar_donaciones(request, pk):
+    donacion = get_object_or_404(Donacion, id_donacion=pk)
+    donacion.delete()
+    return redirect(to='lista_donaciones')   
 #SECCION AGREGAR USUARIOS----------------------------------------------------------------
 
+def registro(request):
+    data = {'form': Registroforms()}
+    if request.method == 'POST':
+        formulario = Registroforms(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            usuario = formulario.save(commit = False)
+            usuario.contraseña = formulario.cleaned_data['password']
+            usuario.save()
+            data["mensaje"] = "Registrado con éxito"
+            return redirect(to='joboutique')
+        else:
+            data['form'] = formulario
+    return render(request, 'tienda/registrarse.html', data)
+
+#SECCION LOGIN----------------------------------------------------------------------------
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            usuario = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            usuario = authenticate(usuario=usuario, password=password)
+            if usuario is not None:
+                login(request, usuario)
+
+                return redirect('home')
+
+    else:
+
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})

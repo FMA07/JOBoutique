@@ -39,9 +39,7 @@
                     </div>
                     
                     <div class="d-flex">
-                        <a href="{% url 'carrito' %}">
-                            <img src="{% static 'tienda/Img/carrito_compras.png' %}" alt="" height="100px" width="100px" style="padding-right: 20px !important;">
-                        </a>
+                        
                         <a href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{% static 'tienda/Img/login.png' %}" height="100px" width="100px" alt="">    
                         </a>
@@ -51,7 +49,7 @@
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="">Iniciar Sesión</a>
+                                <a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesión</a>
                             </li>
                         </ul>
                     </div>
@@ -77,12 +75,18 @@
                     <h3 id="h3Footer">Contacto</h3>
                     Dudas o consultas:
                     <br>
-                    <a href="{% url 'redirigir_whatsapp' %}" id="h3Footer">WhatsApp</a>
+                    <a href="{% url 'redirigir_whatsapp' %}" id="h3Footer">
+                        <img src="{% static 'tienda/Img/symb_whatsapp.png' %}" alt="Logo" class="img-fluid" style="height: 7%; width: 7%">
+                        WhatsApp
+                    </a>
                     <br>
-                    Instagram 
+                    <a href="{% url 'redirigir_insta' %}" id="h3Footer">
+                        <img src="{% static 'tienda/Img/symb_instagram.png' %}" alt="Logo" class="img-fluid" style="height: 7%; width: 7%">
+                        Instagram
+                    </a>                    
                 </div>
-                <div class="col-lg-4">
-                    <h3 id="h3Footer">No sé que puede ir aquí</h3>
+                <div style="text-align: center;" class="col-lg-4">
+                    <a  class="nav-link" id="admin" href="{% url 'gestor_admin' %}">ADMIN</a>
                 </div>
             </div>
         </nav>

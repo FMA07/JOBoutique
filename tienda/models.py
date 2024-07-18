@@ -32,7 +32,7 @@ class Usuario(models.Model):
     direccion       = models.CharField(max_length=20)
     celular         = models.CharField(max_length=12)
     telefono_opcion = models.CharField(max_length=12, null=True, blank=True)
-    contraseña     = models.CharField(max_length=20, null=False)
+    contraseña      = models.CharField(max_length=20, null=False)
 
     def __str__(self):
         return f'Nombre: {self.nombre} {self.appaterno} | Email: {self.email} | Comuna: {self.comuna}'
@@ -46,7 +46,7 @@ class Producto(models.Model):
     img_producto    = models.ImageField(upload_to="productos", null=True)
 
     def __str__(self):
-        return f'Codigo producto: {self.cod_producto} | Nombre: {self.nombre} | Precio: ${self.precio} | Cantidad disponible: {self.cantidad} | Descripcion: {self.descripcion}'
+        return f'Codigo producto: {self.cod_producto} | Nombre: {self.nombre}'
 
 class Pedido(models.Model):
     cod_pedido      = models.AutoField(primary_key=True, unique=True)
@@ -64,7 +64,7 @@ class Tela(models.Model):
     nomb_tela       = models.CharField(max_length=200, null=True)
     existencia      = models.BooleanField(default=True)
     def __str__(self):
-        return f'Cod_tela: {self.cod_tela} | Nombre_tela: {self.nomb_tela} | Existencia: {self.existencia}'
+        return f'Codigo: {self.cod_tela} | Nombre: {self.nomb_tela}'
 
 class Carrito(models.Model):
     id_carrito      = models.AutoField(primary_key=True, unique=True)

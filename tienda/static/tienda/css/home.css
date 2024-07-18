@@ -245,6 +245,12 @@ body{
 }
 
 /*Seccion Forms*/
+#id_descripcion{
+    width: 100%;
+    height: 150px;
+    overflow-wrap: auto;
+    text-wrap: hard;
+}
 
 .prueba{
     margin-bottom: 50%;

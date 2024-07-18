@@ -1,61 +1,37 @@
 {% extends 'tienda/base.html' %}
 {% block title %}Pedidos{% endblock %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 {% load static %}
 {% block contenido %}
 
 <div class="container-fluid" style="margin-top: 15%;">
     <div class="row">
         <div class="col-lg-8"> <!--Mitad izquierda de la página-->
-            <div class="order-background">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <img src="{% static 'tienda/Img/nina_pintando' %}" alt="" height="100%" width="100%" style="border-radius: 10%;"> <!--Insertar imagen de seccion pedidos-->
-                    </div>
-                    <div class="col-lg-8">
-                        <h1 class="mensaje" style="font-size: 350%; margin-top: 5%;">
-                            Agenda tu pedido
-                        </h1>
-                        <form style="margin-right: 5%; margin-bottom: 5%;">
-                            <div class="form-group" style="color: white; font-weight: bold; font-size: 150%;">
-                                <label for="Descripción">
-                                    Descripción:
-                                </label>
-                                <textarea type="text" class="form-control" id="inputProductDescription" rows="5" aria-describedby="descriptionHelp" maxlength="300" placeholder="(Max caracteres 200)"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-end mt-3">
-                <button type="submit" class="btn btn-primary boton" id="botonPedir" style="width: 25% !important ;">Pedir</button>
+            <div class="col-lg-4">
+                <img src="{% static 'tienda/Img/nina_pintando' %}" alt="" height="150%" width="150%" style="border-radius: 10%; margin-left: 50%;"> <!--Insertar imagen de seccion pedidos-->
             </div>
         </div>
         <div class="col-lg-4"> <!--Mitad derecha de la página-->
-            <div class="order-background">
-                <div class="row">
-                    <h3 class="mensaje" style="margin-top: 2%;">Selecciona el modelo que quieres</h3>
-                    <div class="col-lg-6" style="padding-top: 5%; padding-bottom: 5%;"> <!--Imágenes en columna izquierda-->
-                        <div class="d-flex justify-content-center" style="margin-bottom: 5%;">
-                            <img class="img-fluid" src="Img/Estuches-de-tela.webp" alt="" height="80%" width="80%">
+            <div class="order-background" style="margin-right: 10%;">
+                <div class="row" style="margin-left: 10%; margin-right: 10%;">
+                    <h1 class="mensaje" style="font-size: 350%; margin-top: 5%;">
+                        Agenda tu pedido
+                    </h1>
+                    <form action="pedidos" method="POST" style="margin-right: 5%; margin-bottom: 5%;">
+                        {% csrf_token %}
+                        <h4 style="font-weight: bold;">Usuario</h4>
+                        {{form.email | as_crispy_field}}
+                        <h4 style="font-weight: bold;">Código Producto*</h4>
+                        {{form.cod_producto | as_crispy_field}}
+                        <h4 style="font-weight: bold;">Código tela*</h4>
+                        {{form.cod_tela | as_crispy_field}}
+                        <h4 style="font-weight: bold;">Descripción</h4>
+                        {{form.descripcion | as_crispy_field}}
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary boton" id="botonPedir" style="width: 25% !important ;" onclick="mostrarMensaje()" >Pedir</button>
                         </div>
-                        <div class="d-flex justify-content-center" style="margin-bottom: 5%;">
-                            <img class="img-fluid" src="Img/Estuches-de-tela.webp" alt="" height="80%" width="80%">
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <img class="img-fluid" src="Img/Estuches-de-tela.webp" alt="" height="80%" width="80%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6" style="padding-top: 5%; padding-bottom: 5%;"> <!--Imágenes en columna derecha-->
-                        <div class="d-flex justify-content-center" style="margin-bottom: 5%;">
-                            <img class="img-fluid" src="Img/Estuches-de-tela.webp" alt="" height="80%" width="80%">
-                        </div>
-                        <div class="d-flex justify-content-center" style="margin-bottom: 5%;">
-                            <img class="img-fluid" src="Img/Estuches-de-tela.webp" alt="" height="80%" width="80%">
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <img class="img-fluid" src="Img/Estuches-de-tela.webp" alt="" height="80%" width="80%">
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

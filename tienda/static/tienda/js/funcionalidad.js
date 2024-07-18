@@ -67,3 +67,9 @@ $(document).ready(function () {
     //-----------------------------------------------------------------------
     
 });
+function mostrarMensaje() {
+    MessageEvent("Gracias por su pedido, por favor confirmar a través de Whatsapp o Instagram (Tiempo de espera 24hrs aprox)");
+};
+function mostrarMensajeD() {
+    MessageEvent("Gracias por su donacion, por favor confirmar a través de Whatsapp o Instagram (Tiempo de espera 24hrs aprox)");
+};

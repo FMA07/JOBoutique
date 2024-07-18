@@ -21,9 +21,12 @@
                 <div class="row">
                     <form action="donaciones" method="POST" enctype="multipart/form-data" >
                         {% csrf_token %}
+                        <h4 style="font-weight: bold;">Usuario</h4>
+                        {{form.email | as_crispy_field}}
+                        <h4 style="font-weight: bold;">Foto</h4>
                         {{form.img_donacion | as_crispy_field}}
                         <div style="text-align: center; margin-top: 5%;">
-                            <input type="submit" value="Donar" class="btn btn-primary boton" id="botonDonar">
+                            <button type="submit"   class="btn btn-primary boton" onclick="mostrarMensajeD()" id="botonDonar">Donar</button>
                         </div>
                     </form>
                 </div>

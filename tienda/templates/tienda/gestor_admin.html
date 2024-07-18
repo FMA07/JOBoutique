@@ -1,0 +1,48 @@
+{% extends 'tienda/base.html' %}
+{% block title %}ADMIN{% endblock %}
+{% load static %}
+{% block contenido %}
+
+<div style="margin-top: 10%; text-align: center;">
+    <img src="{% static 'tienda/Img/logoredondo.png' %}" alt="Logo" class="img-fluid" style="height: 15%; width: 15%">
+</div>
+<br>
+
+<div style="text-align: center;" >
+    <h2>Productos</h2>
+    <div class = "productos_admin">
+        <a href="{% url 'lista_productos' %}">
+            <img src="{% static 'tienda/Img/symb_producto.png' %}" alt="Logo" class="img-fluid" style="height: 4%; width: 4%">
+        </a>   
+    </div>
+        <br><br>
+        <h2>Telas</h2>
+    <div class = "telas_admin">
+        <a href="{% url 'lista_telas' %}">
+            <img src="{% static 'tienda/Img/Symb_tela.png' %}" alt="Logo" class="img-fluid" style="height: 4%; width: 4%">
+        </a>
+    </div>
+        <br><br>
+        <h2>Pedidos</h2>
+    <div class = "pedidos_admin">
+        <a href="{% url 'lista_pedidos' %}">
+            <img src="{% static 'tienda/Img/symb_pedido.png' %}" alt="Logo" class="img-fluid" style="height: 7%; width: 7%">
+        </a>
+    </div>
+        <br><br>
+        <h2>Donaciones</h2>    
+    <div class = "donaciones_admin">
+        <a href="{% url 'lista_donaciones' %}">
+            <img src="{% static 'tienda/Img/symb_donacion.png' %}" alt="Logo" class="img-fluid" style="height: 5%; width: 5%">
+        </a>
+    </div>
+        <br><br>
+        <h2>Ventas</h2>
+    <div class = "vetas_admin">
+        <a href="">
+            <img src="{% static 'tienda/Img/symb_venta.png' %}" alt="Logo" class="img-fluid" style="height: 7%; width: 7%">
+        </a>
+    </div>
+</div>
+
+{% endblock %}
